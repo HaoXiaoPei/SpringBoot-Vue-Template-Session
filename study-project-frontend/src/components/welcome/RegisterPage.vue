@@ -128,6 +128,36 @@ const onValidate = (prop, isValid) => {
     isEmailValid.value = isValid
 }
 
+// const register = () => {
+//   formRef.value.validate((isValid) => {
+//     if(isValid) {
+//       post('/api/auth/register', {
+//         username: form.username,
+//         password: form.password,
+//         email: form.email,
+//         code: form.code
+//       }, (message) => {
+//         ElMessage.success(message)
+//         router.push("/")
+//       })
+//     } else {
+//       ElMessage.warning('请完整填写注册表单内容！')
+//     }
+//   })
+// }
+
+// const validateEmail = () => {
+//   coldTime.value = 60
+//   post('/api/auth/valid-register-email', {
+//     email: form.email
+//   }, (message) => {
+//     ElMessage.success(message)
+//     setInterval(() => coldTime.value--, 1000)
+//   }, (message) => {
+//     ElMessage.warning(message)
+//     coldTime.value = 0
+//   })
+// }
 </script>
 
 <style scoped>
