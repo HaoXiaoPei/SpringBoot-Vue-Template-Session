@@ -6,6 +6,7 @@ import com.example.service.AuthorizeService;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.userdetails.User;
@@ -74,16 +75,16 @@ public class AuthorizeServiceImpl implements AuthorizeService {
         message.setText("验证码是：" + code);
 
         //能发邮件的时候，删掉下面这行，打开try代码块
-        template.opsForValue().set(key, String.valueOf(code), 3, TimeUnit.MINUTES);
-//        try {
-//            mailSender.send(message);
-//            template.opsForValue().set(key, String.valueOf(code), 3, TimeUnit.MINUTES);
-//            return null;
-//        } catch (MailException e){
-//            e.printStackTrace();
-//            return "邮件发送失败，请检查邮件地址是否有效";
-//        }
-        return null;
+        //template.opsForValue().set(key, String.valueOf(code), 3, TimeUnit.MINUTES);
+        try {
+            mailSender.send(message);
+            template.opsForValue().set(key, String.valueOf(code), 3, TimeUnit.MINUTES);
+            return null;
+        } catch (MailException e){
+            e.printStackTrace();
+            return "邮件发送失败，请检查邮件地址是否有效";
+        }
+        //return null;
 
     }
 
