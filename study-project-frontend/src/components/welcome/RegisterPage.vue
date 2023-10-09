@@ -148,7 +148,7 @@ const register = () => {
 
 const validateEmail = () => {
   coldTime.value = 60
-  post('/api/auth/valid-email', {
+  post('/api/auth/valid-register-email', {
     email: form.email
   }, (message) => {
     ElMessage.success(message)

@@ -1,9 +1,10 @@
 package com.example.mapper;
 
-import com.example.entity.Account;
+import com.example.entity.auth.Account;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface UserMapper {
@@ -11,4 +12,6 @@ public interface UserMapper {
     Account findAccountByNameOrEmail(String text);
     @Insert("insert into db_account (email, username, password) values (#{email}, #{username},#{password})")
     int createAccount(String email, String username, String password);
+    @Update("update db_account set password = #{password} where email = #{email}")
+    int resetPasswordByEmail(String password, String email);
 }
