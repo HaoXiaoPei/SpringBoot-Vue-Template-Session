@@ -1,6 +1,6 @@
 <template>
   <div>
-    欢迎{{store.auth.user.username}}进入到学习平台
+    欢迎{{username}}进入到学习平台
   </div>
   <div>
     <el-button @click="logout()" type="danger" plain>退出登录</el-button>
@@ -14,6 +14,7 @@ import router from "@/router";
 import {useStore} from "@/stores";
 
 const store = useStore()
+const username = store.auth.user.username
 const logout = () => {
   get('/api/auth/logout',(message) => {
     ElMessage.success(message)
